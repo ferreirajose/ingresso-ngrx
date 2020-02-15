@@ -1,20 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { ReactiveFormsModule } from '@angular/forms';
+
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+
 // Modulos
 import { AppRoutingModule } from './app-routing.module';
 
-
 import { AppComponent } from './app.component';
+
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
 import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
 import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
-import { FooterComponent } from './shared/footer/footer.component';
-import { NavbarComponent } from './shared/navbar/navbar.component';
-import { SidebarComponent } from './shared/sidebar/sidebar.component';
+
+import { SharedModule } from './shared/shared.module';
+
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
@@ -25,16 +33,17 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     DashboardComponent,
     IngresoEgresoComponent,
     EstadisticaComponent,
-    DetalleComponent,
-    FooterComponent,
-    NavbarComponent,
-    SidebarComponent
+    DetalleComponent
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
+    ReactiveFormsModule,
+    SharedModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
