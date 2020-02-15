@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 // Modulos
@@ -39,6 +39,7 @@ import { environment } from 'src/environments/environment';
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     ReactiveFormsModule,
     SharedModule,
     AppRoutingModule

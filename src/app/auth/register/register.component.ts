@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { AngularFirestore } from '@angular/fire/firestore';
+
 import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-import { Alert } from 'src/app/shared/components/alert/models/alert.interface';
+
+import { Alert } from 'src/app/shared/components/alert/interface/alert.interface';
 import { MessageServices } from 'src/app/shared/enums/message-services.enum';
+
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-register',
@@ -21,6 +26,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
+    private afs: AngularFirestore,
     private authService: AuthService
   ) {
     this.erro = false;
@@ -39,8 +45,20 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    const { name } = this.formRegister.getRawValue();
     this.authService.createNewUser(this.formRegister.getRawValue()).then(res => {
-      this.router.navigate(['/dashbord']);
+
+      const user: User = {
+        uid: res.user.uid,
+        name,
+        email: res.user.email
+      };
+
+      this.afs.doc(`${user.uid}/user`).set(user).then(() => {
+        this.router.navigate(['/dashbord']);
+      }).catch(erro => {
+        console.log(erro, 'create User');
+      });
 
     }).catch(erro => {
       this.handleErroRegister(erro);

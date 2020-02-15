@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
-import { Alert } from 'src/app/shared/components/alert/models/alert.interface';
+import { Alert } from 'src/app/shared/components/alert/interface/alert.interface';
 import { MessageServices } from 'src/app/shared/enums/message-services.enum';
 
 @Component({

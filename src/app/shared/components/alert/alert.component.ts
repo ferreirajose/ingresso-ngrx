@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Alert } from './models/alert.interface';
+import { Alert } from './interface/alert.interface';
 
 @Component({
   selector: 'app-alert',
