@@ -30,7 +30,11 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <button (click)="login()" class="btn btn-primary submit-btn btn-block">Login</button>
+                  <button class="btn btn-primary submit-btn btn-block" [disabled]="true" *ngIf="loading" type="button">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Loading...
+                  </button>
+                  <button (click)="login()" *ngIf="!loading" class="btn btn-primary submit-btn btn-block">Login</button>
                 </div>
 
                 <div class="text-block text-center my-3">

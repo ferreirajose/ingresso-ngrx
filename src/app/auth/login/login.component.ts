@@ -1,24 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { AuthService } from '../services/auth.service';
+
 import { Router } from '@angular/router';
+
+import { Subscription } from 'rxjs';
+
+import { AppState } from 'src/app/app-reducer';
+import { Store } from '@ngrx/store';
+
+import { AuthService } from '../services/auth.service';
+
 import { Alert } from 'src/app/shared/components/alert/interface/alert.interface';
 import { MessageServices } from 'src/app/shared/enums/message-services.enum';
+import { DesactivateLoading, ActivateLoading } from 'src/app/shared/actions/actions';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styles: []
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public formLogin: FormGroup;
   public erro: boolean;
   public alert: Alert;
+  public loading: boolean;
+
+  private subscription: Subscription;
 
   constructor(
     private authService: AuthService,
+    private store: Store<AppState>,
     private router: Router,
     private fb: FormBuilder
   ) {
@@ -30,10 +42,22 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm();
+    this.subscription = this.store.select('ui').subscribe(ui => {
+      this.loading = ui.isLoading;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public login(): void {
+    this.store.dispatch(new ActivateLoading());
+
     this.authService.login(this.formLogin.getRawValue()).then(res => {
+      // Finalizando loading
+      this.store.dispatch(new DesactivateLoading());
+
       this.router.navigate(['/dashboard']);
     }).catch(error => {
       this.handleErroLogin(error);
@@ -53,6 +77,8 @@ export class LoginComponent implements OnInit {
     const errorCode = error.code;
     const errorMessage = error.message;
 
+    // Finalizando loading
+    this.store.dispatch(new DesactivateLoading());
     errorCode === MessageServices.AUTH_WRONG ? this.alert.message = MessageServices.WRONG_PASSWORD : this.alert.message = errorMessage;
 
   }
