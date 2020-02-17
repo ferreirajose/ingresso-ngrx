@@ -87,7 +87,6 @@ export class AuthService {
         name: val && val.name || null
       };
 
-      console.log(userObj);
       this.user = userObj;
       this.store.dispatch(new SetUserAction(userObj));
 

@@ -1,16 +1,20 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
+import { DocumentReference } from 'angularfire2/firestore';
+
+import { Subscription } from 'rxjs';
+
+import { AppState } from '../app-reducer';
+import { Store } from '@ngrx/store';
+
+import { ActivateLoading, DesactivateLoading } from '../shared/actions/actions';
+
 import { Message } from '../shared/enum/message.enum';
 import { Entrada } from './enum/entrada.enum';
 
 import { TicketModel } from './models/ticket.model';
 import { TicketService } from './services/ticket.service';
-import { DocumentReference } from 'angularfire2/firestore';
-import { AppState } from '../app-reducer';
-import { Store } from '@ngrx/store';
-import { ActivateLoading, DesactivateLoading } from '../shared/actions/actions';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ticket',
@@ -58,7 +62,7 @@ export class TicketComponent implements OnInit, OnDestroy {
 
   public save(): void {
     if (this.formTicket.invalid) {
-      console.log(Message.CAMPOS_OBRIGATORIOS);
+      alert(Message.CAMPOS_OBRIGATORIOS);
       return;
     }
 

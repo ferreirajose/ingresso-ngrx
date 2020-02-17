@@ -1,22 +1,21 @@
 import { ActionReducerMap } from '@ngrx/store';
 
-import { uiReducer } from './shared/reducer/ui.reducer';
 import { authReducer } from './shared/reducer/auth.reducer';
+import { ticketReducer } from './shared/reducer/ticket.reducer';
+import { uiReducer } from './shared/reducer/ui.reducer';
 
-import { UiLoading } from './shared/state/ui-loading.interface';
 import { AuthState } from './shared/state/auth-state.interface';
+import { TicketState } from './shared/state/ticket-state.interface';
+import { UiLoading } from './shared/state/ui-loading.interface';
 
 export interface AppState {
   ui: UiLoading;
   authUser: AuthState;
+  ticket: TicketState;
 }
-
-/**
- * agrupar todos os reducers da aplicação, no momento existe apenas um reducer
- * que é um função uiReducer(), não esquece reducer é uma função ()
- **/
 
 export const appReducers: ActionReducerMap<AppState> = {
   ui: uiReducer,
-  authUser: authReducer
+  authUser: authReducer,
+  ticket: ticketReducer
 };
