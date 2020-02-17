@@ -14,9 +14,9 @@ import { AppState } from 'src/app/app-reducer';
 import { AuthService } from '../services/auth.service';
 
 import { Alert } from 'src/app/shared/components/alert/interface/alert.interface';
-import { MessageServices } from 'src/app/shared/enums/message-services.enum';
+import { MessageServices } from 'src/app/shared/enum/message-services.enum';
 
-import { User } from '../models/user.model';
+import { User } from '../interface/user.interface';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -41,6 +41,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private authService: AuthService
   ) {
     this.erro = false;
+    this.subscription = new Subscription();
     this.alert = {
       message: ''
     };
@@ -60,6 +61,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public save(): void {
 
     if (this.formRegister.invalid) {
+      this.alert.message = 'Verifique os campos';
+      this.erro = true;
       return;
     }
 

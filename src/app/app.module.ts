@@ -29,9 +29,9 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
-import { IngresoEgresoComponent } from './ingreso-egreso/ingreso-egreso.component';
-import { EstadisticaComponent } from './ingreso-egreso/estadistica/estadistica.component';
-import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
+import { TicketComponent } from './ticket/ticket.component';
+import { EstadisticaComponent } from './ticket/estadistica/estadistica.component';
+import { DetalleComponent } from './ticket/detalle/detalle.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { DetalleComponent } from './ingreso-egreso/detalle/detalle.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    IngresoEgresoComponent,
+    TicketComponent,
     EstadisticaComponent,
     DetalleComponent
   ],

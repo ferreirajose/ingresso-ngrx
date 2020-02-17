@@ -1,9 +1,7 @@
-import { User } from 'src/app/auth/models/user.model';
-
 import { AuthState } from '../state/auth-state.interface';
 
 import * as fromAuth from '../actions/actions-auth';
-import { AuthActions } from '../enums/auth.actions.enum';
+import { AuthActions } from '../enum/auth.actions.enum';
 
 const INITIAL_STATE: AuthState = {
   user: null

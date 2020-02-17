@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Store } from '@ngrx/store';
 import { AuthService } from '../services/auth.service';
 
 import { Alert } from 'src/app/shared/components/alert/interface/alert.interface';
-import { MessageServices } from 'src/app/shared/enums/message-services.enum';
+import { MessageServices } from 'src/app/shared/enum/message-services.enum';
 import { DesactivateLoading, ActivateLoading } from 'src/app/shared/actions/actions';
 
 @Component({
@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private fb: FormBuilder
   ) {
     this.erro = false;
+    this.subscription = new Subscription();
     this.alert = {
       message: ''
     };
@@ -52,6 +53,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   public login(): void {
+    if (this.formLogin.invalid) {
+      this.alert.message = 'Erro ao efetuar Login';
+      this.erro = true;
+      return;
+    }
+
     this.store.dispatch(new ActivateLoading());
 
     this.authService.login(this.formLogin.getRawValue()).then(res => {

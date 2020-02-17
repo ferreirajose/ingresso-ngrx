@@ -1,4 +1,4 @@
-import { User } from 'src/app/auth/models/user.model';
+import { User } from 'src/app/auth/interface/user.interface';
 
 export interface AuthState {
   user: User;

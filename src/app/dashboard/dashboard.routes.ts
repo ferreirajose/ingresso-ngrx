@@ -1,14 +1,14 @@
 import { Routes } from '@angular/router';
-import { EstadisticaComponent } from '../ingreso-egreso/estadistica/estadistica.component';
-import { IngresoEgresoComponent } from '../ingreso-egreso/ingreso-egreso.component';
-import { DetalleComponent } from '../ingreso-egreso/detalle/detalle.component';
+import { EstadisticaComponent } from '../ticket/estadistica/estadistica.component';
+import { TicketComponent } from '../ticket/ticket.component';
+import { DetalleComponent } from '../ticket/detalle/detalle.component';
 
 
 
 export const dashboardRoutes: Routes = [
 
  { path: '', component: EstadisticaComponent },
- { path: 'ingreso-egreso', component: IngresoEgresoComponent },
+ { path: 'ingreso-egreso', component: TicketComponent },
  { path: 'detalle', component: DetalleComponent },
 
 ];

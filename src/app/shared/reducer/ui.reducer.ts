@@ -1,4 +1,4 @@
-import { UiActions } from '../enums/ui-actions.enum';
+import { UiActions } from '../enum/ui-actions.enum';
 import { UiLoading } from '../state/ui-loading.interface';
 
 import * as fromUI from '../actions/actions';

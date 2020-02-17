@@ -13,7 +13,7 @@ import { SetUserAction } from 'src/app/shared/actions/actions-auth';
 
 import { AppState } from 'src/app/app-reducer';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { User } from '../models/user.model';
+import { User } from '../interface/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +21,7 @@ import { User } from '../models/user.model';
 export class AuthService {
 
   private userSubscription: Subscription;
+  private user: User;
 
   constructor(
     private router: Router,
@@ -35,12 +36,21 @@ export class AuthService {
   public initAuthLister(): void {
     this.authFire.authState.subscribe((user: firebase.User) => {
 
-      user ? this.setUserAction(user) : this.userSubscription.unsubscribe();
+      if (user) {
+        this.setUserAction(user);
+        return;
+      }
+      this.user = null;
+      this.userSubscription.unsubscribe();
 
     }, (erro) => {
       console.log(erro);
 
     });
+  }
+
+  public getUser(): User | any {
+    return {...this.user };
   }
 
   public isAuth(): Observable<boolean> {
@@ -71,8 +81,6 @@ export class AuthService {
   private setUserAction(user: firebase.User): void {
 
     this.userSubscription = this.afs.doc(`${user.uid}/user`).valueChanges().subscribe((val: any) => {
-      console.log(val);
-
       const userObj: User = {
         uid: val && val.uid || null,
         email: val && val.email || null,
@@ -80,7 +88,7 @@ export class AuthService {
       };
 
       console.log(userObj);
-
+      this.user = userObj;
       this.store.dispatch(new SetUserAction(userObj));
 
     });

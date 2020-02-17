@@ -1,8 +1,8 @@
 import { Action } from '@ngrx/store';
 
-import { AuthActions } from '../enums/auth.actions.enum';
+import { AuthActions } from '../enum/auth.actions.enum';
 
-import { User } from 'src/app/auth/models/user.model';
+import { User } from 'src/app/auth/interface/user.interface';
 
 export class SetUserAction implements Action {
   public readonly type = AuthActions.SET_USER;

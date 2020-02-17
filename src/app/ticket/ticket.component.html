@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Entradas / Saídas</h4>
+        <p class="card-description">
+          Especifique el monto y el tipo
+        </p>
+
+        <form [formGroup]="formTicket">
+
+          <div class="form-group">
+            <label>Descrição</label>
+            <input type="text" class="form-control" formControlName="description" placeholder="Descrição" />
+          </div>
+
+          <div class="form-group">
+            <label>Valor</label>
+            <input type="number" class="form-control" formControlName="price" placeholder="Valor" />
+            <p>
+              Deve ser um valor positivo
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label>Tipo</label>
+            <br>
+            <button type="button" (click)="type = saida" *ngIf="type === entrada" class="btn btn-primary btn-block">Entrada</button>
+            <button type="button" (click)="type = entrada" *ngIf="type === saida" class="btn btn-warning btn-block">Saida</button>
+          </div>
+
+          <hr>
+          <button class="btn btn-primary submit-btn" [disabled]="true" *ngIf="loading" type="button">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Loading... <i class="fa fa-save"></i>
+          </button>
+
+          <button [disabled]="isFormValid" *ngIf="!loading" type="button" (click)="save()" class="btn btn-success mr-2">
+            <i class="fa fa-save"></i>
+            Salvar
+          </button>
+
+          <button type="reset" class="btn btn-light">Cancelar</button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
