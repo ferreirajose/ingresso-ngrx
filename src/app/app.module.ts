@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import ptBr from '@angular/common/locales/pt';
+registerLocaleData(ptBr);
 
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -32,7 +35,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { TicketComponent } from './ticket/ticket.component';
 import { EstadisticaComponent } from './ticket/estadistica/estadistica.component';
 import { DetalleComponent } from './ticket/detalle/detalle.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,7 +59,10 @@ import { DetalleComponent } from './ticket/detalle/detalle.component';
     SharedModule,
     AppRoutingModule
   ],
-  providers: [AngularFireAuth],
+  providers: [AngularFireAuth,  {
+    provide: LOCALE_ID,
+    useValue: 'pt-BR'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

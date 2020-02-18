@@ -2,7 +2,7 @@ import { Ticket } from '../interface/ticket.interface';
 
 export class TicketModel {
   public description: string;
-  public price: string;
+  public price: string | number;
   public type: string;
   public uid?: string;
 

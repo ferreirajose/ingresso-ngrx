@@ -13,13 +13,13 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of ticketList">
+                <tr *ngFor="let item of ticketList | entrada">
                   <td>{{ item?.description }}</td>
                   <td>{{ item?.price }}</td>
                   <td>
                     <span class="badge" [ngClass]="{
-                      'badge-success': item?.type === 'ENTRADA',
-                      'badge-danger': item?.type === 'SAIDA'
+                      'badge-success': item?.type === entrada,
+                      'badge-danger': item?.type === saida
                       }">{{ item.type }}</span>
                   </td>
                   <td>
@@ -36,7 +36,7 @@
               </tbody>
             </table>
 
-            <div class="alert alert-primary" role="alert" *ngIf="ticketList.length">
+            <div class="alert alert-primary" role="alert" *ngIf="!!ticketList.length">
               <div class="text-center">
                 <div class="spinner-border" role="status">
                   <span class="sr-only">Loading...</span>

@@ -1,13 +1,13 @@
-import { TicketService } from './../services/ticket.service';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { take } from 'rxjs/operators';
-
 import { AppState } from 'src/app/app-reducer';
+
+import { Entrada } from './../enum/entrada.enum';
+
 import { TicketModel } from './../models/ticket.model';
 
-
+import { TicketService } from './../services/ticket.service';
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -27,6 +27,14 @@ export class DetalleComponent implements OnInit {
     this.store.select('ticket').subscribe(({items}) => {
       this.ticketList = items;
     });
+  }
+
+  public get entrada(): Entrada {
+    return Entrada.ENTRADA;
+  }
+
+  public get saida(): Entrada {
+    return Entrada.SAIDA;
   }
 
   public edit(uid: string) {

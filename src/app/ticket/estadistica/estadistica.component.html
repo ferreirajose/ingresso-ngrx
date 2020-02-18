@@ -8,9 +8,9 @@
                 <i class="fa fa-money-bill-alt text-success icon-lg"></i>
               </div>
               <div class="float-right">
-                <p class="mb-0 text-right">Ingresos</p>
+                <p class="mb-0 text-right">Entradas</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                  <h3 class="font-weight-medium text-right mb-0">{{ this.entrada | currency:'BRL':true:'1.2-2'}}</h3>
                 </div>
               </div>
             </div>
@@ -30,9 +30,9 @@
                   <i class="fa fa-shipping-fast text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Ingresos</p>
+                  <p class="mb-0 text-right">Saidas</p>
                   <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0">$65,650</h3>
+                    <h3 class="font-weight-medium text-right mb-0">{{ this.saida | currency:'BRL':true:'1.2-2'}}</h3>
                   </div>
                 </div>
               </div>
@@ -43,3 +43,5 @@
           </div>
         </div>
 </div>
+
+pi6
