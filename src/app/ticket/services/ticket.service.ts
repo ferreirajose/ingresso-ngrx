@@ -54,20 +54,16 @@ export class TicketService {
     this.afs.collection(`${uid}/ticket/items`).snapshotChanges()
     .pipe(
       map((docData: DocumentChangeAction<unknown>[]) => {
-        console.log(docData);
-        
         return docData.map((doc: DocumentChangeAction<unknown>) => (
           {
             ...doc.payload.doc.data(),
             uid: doc.payload.doc.id
           }
         ));
-      })
-      //take(2) // unsubscribe
+      }),
+      take(2) // unsubscribe
     )
     .subscribe((collection: Array<TicketModel>) => {
-      //console.log(collection);
-      
       this.store.dispatch(new SetItemsAction(collection));
     }, (erro) => {
         console.log(erro, 'ticketItems');

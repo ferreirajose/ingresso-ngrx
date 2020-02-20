@@ -8,7 +8,7 @@
               <app-alert [alertConfig]="alert" *ngIf="erro"></app-alert>
               <form [formGroup]="formLogin">
                 <div class="form-group">
-                  <label class="label">Usuario</label>
+                  <label class="label">E-mail</label>
                   <div class="input-group">
                     <input type="email" class="form-control" formControlName="email" placeholder="Email">
                     <div class="input-group-append">
@@ -19,7 +19,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label">Contraseña</label>
+                  <label class="label">Senha</label>
                   <div class="input-group">
                     <input type="password" class="form-control" formControlName="password" placeholder="*********">
                     <div class="input-group-append">
@@ -38,9 +38,9 @@
                 </div>
 
                 <div class="text-block text-center my-3">
-                  <span class="text-small font-weight-semibold">No Register</span>
+                  <span class="text-small font-weight-semibold">Registre-se</span>
                   <br>
-                  <a routerLink="/register" class="text-black text-small">Create New Account</a>
+                  <a routerLink="/register" class="text-black text-small">Nova Conta</a>
                 </div>
               </form>
             </div>

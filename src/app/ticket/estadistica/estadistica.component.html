@@ -8,9 +8,9 @@
                 <i class="fa fa-money-bill-alt text-success icon-lg"></i>
               </div>
               <div class="float-right">
-                <p class="mb-0 text-right">Entradas</p>
+                <p class="mb-0 text-right">Receitas</p>
                 <div class="fluid-container">
-                  <h3 class="font-weight-medium text-right mb-0">{{ this.entrada | currency:'BRL':true:'1.2-2'}}</h3>
+                  <h3 class="font-weight-medium text-right mb-0">{{ entrada | currency:'BRL':true:'1.2-2'}}</h3>
                 </div>
               </div>
             </div>
@@ -24,15 +24,15 @@
       <div class="col-6">
           <div class="card card-statistics">
             <div class="card-body">
-  
+
               <div class="clearfix">
                 <div class="float-left">
                   <i class="fa fa-shipping-fast text-danger icon-lg"></i>
                 </div>
                 <div class="float-right">
-                  <p class="mb-0 text-right">Saidas</p>
+                  <p class="mb-0 text-right">Despesas</p>
                   <div class="fluid-container">
-                    <h3 class="font-weight-medium text-right mb-0">{{ this.saida | currency:'BRL':true:'1.2-2'}}</h3>
+                    <h3 class="font-weight-medium text-right mb-0">{{ saida | currency:'BRL':true:'1.2-2' }}</h3>
                   </div>
                 </div>
               </div>
@@ -43,5 +43,54 @@
           </div>
         </div>
 </div>
+<div class="row mt-4">
 
-pi6
+  <div class="col-12 mb-4">
+      <div class="card card-statistics">
+        <div class="card-body">
+
+            <div class="clearfix">
+                <div class="float-left">
+                  <i class="fa fa-building text-info icon-lg"></i>
+                </div>
+                <div class="float-right">
+                  <p class="mb-0 text-right">Diferencia</p>
+                  <div class="fluid-container">
+                    <h3 [ngClass]="{
+                      'text-success': entrada - saida > 0,
+                      'text-danger': entrada - saida < 0
+                    }"
+                        class="font-weight-medium text-right mb-0">
+                      {{ entrada - saida | currency:'BRL':true:'1.2-2' }}
+                    </h3>
+                  </div>
+                </div>
+              </div>
+
+
+        </div>
+    </div>
+  </div>
+
+  <div class="col-12" *ngIf="showChart">
+      <div class="card card-statistics">
+        <div class="card-body">
+          <h1 class="card-title">Gráfica</h1>
+
+          <div>
+            <div>
+              <div style="display: block">
+                <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType">
+                </canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+  </div>
+
+</div>

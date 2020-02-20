@@ -10,4 +10,9 @@ export class SetUserAction implements Action {
   constructor(public user: User) {}
 }
 
-export type actionsAuth = SetUserAction;
+export class UnSetUserAction implements Action {
+  public readonly type = AuthActions.UNSET_USER;
+
+}
+
+export type actionsAuth = SetUserAction | UnSetUserAction;

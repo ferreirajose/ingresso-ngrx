@@ -6,6 +6,8 @@ registerLocaleData(ptBr);
 
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { ChartsModule } from 'ng2-charts';
+
 // FireBase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -55,6 +57,7 @@ import { DetalleComponent } from './ticket/detalle/detalle.component';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
+    ChartsModule,
     ReactiveFormsModule,
     SharedModule,
     AppRoutingModule
