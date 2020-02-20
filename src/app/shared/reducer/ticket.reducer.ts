@@ -1,3 +1,4 @@
+import { AppState } from 'src/app/app-reducer';
 import { TicketState } from './../state/ticket-state.interface';
 import { actionsTycket } from './../actions/actions-ticket';
 import { TicketActions } from '../enum/ticket-actions.enum';
@@ -5,6 +6,9 @@ import { TicketActions } from '../enum/ticket-actions.enum';
 const INITIAL_STATE: TicketState = {
     items: []
 };
+export interface AppTicketState extends AppState {
+    ticket: TicketState;
+}
 
 export function ticketReducer(state = INITIAL_STATE, action: actionsTycket): TicketState {
     switch (action.type) {

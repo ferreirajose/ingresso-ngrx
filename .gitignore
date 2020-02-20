@@ -25,6 +25,7 @@ speed-measure-plugin.json
 
 # IDE - VSCode
 .vscode/*
+.vscode/
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
@@ -40,7 +41,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
-
+.angulardoc.json 
 # System Files
 .DS_Store
 Thumbs.db

@@ -11,11 +11,11 @@ import { UiLoading } from './shared/state/ui-loading.interface';
 export interface AppState {
   ui: UiLoading;
   authUser: AuthState;
-  ticket: TicketState;
+  // ticket: TicketState;
 }
 
 export const appReducers: ActionReducerMap<AppState> = {
   ui: uiReducer,
   authUser: authReducer,
-  ticket: ticketReducer
+  // ticket: ticketReducer
 };

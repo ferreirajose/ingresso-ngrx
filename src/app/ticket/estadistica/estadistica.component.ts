@@ -7,8 +7,10 @@ import { Label, MultiDataSet } from 'ng2-charts';
 
 import { Subscription } from 'rxjs';
 
+// import { AppState } from './../../app-reducer';
+import { AppTicketState } from './../../shared/reducer/ticket.reducer';
+
 import { Entrada } from '../enum/entrada.enum';
-import { AppState } from './../../app-reducer';
 import { TicketModel } from './../models/ticket.model';
 
 @Component({
@@ -31,7 +33,7 @@ export class EstadisticaComponent implements OnInit, OnDestroy {
    public doughnutChartType: ChartType;
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppTicketState>
   ) {
     this.doughnutChartType = 'doughnut';
     this.doughnutChartLabels = ['Entrada', 'Saida'];

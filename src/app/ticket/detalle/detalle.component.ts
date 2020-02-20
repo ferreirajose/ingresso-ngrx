@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { AppState } from 'src/app/app-reducer';
+import { AppTicketState } from './../../shared/reducer/ticket.reducer';
 
 import { Entrada } from './../enum/entrada.enum';
 
@@ -17,7 +17,7 @@ export class DetalleComponent implements OnInit {
 
   public ticketList: Array<TicketModel>;
   constructor(
-    private store: Store<AppState>,
+    private store: Store<AppTicketState>,
     private ticketService: TicketService
   ) {
     this.ticketList = [];

@@ -5,8 +5,8 @@ import { DocumentReference } from 'angularfire2/firestore';
 
 import { Subscription } from 'rxjs';
 
-import { AppState } from '../app-reducer';
 import { Store } from '@ngrx/store';
+import { AppTicketState } from './../shared/reducer/ticket.reducer';
 
 import { ActivateLoading, DesactivateLoading } from '../shared/actions/actions';
 
@@ -30,7 +30,7 @@ export class TicketComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private store: Store<AppState>,
+    private store: Store<AppTicketState>,
     private ticketService: TicketService,
     private fb: FormBuilder
   ) {
